@@ -1,11 +1,15 @@
 package com.splittree.controller;
 
 import com.splittree.entity.Order;
+import com.splittree.entity.Org;
 import com.splittree.service.OrderService;
+import com.splittree.service.OrgService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.sql.SQLException;
 
 
 /**
@@ -18,10 +22,12 @@ public class OrderController {
 
     @Autowired
     private OrderService orderService;
+    @Autowired
+    private OrgService orgService;
 
     //测试
-    @RequestMapping(value="update1")
-    public String updateTransactional() {
+    @RequestMapping(value="saveOrder")
+    public String saveOrder() {
         Order order = new Order();
         for (long i = 0;  i< 100; i++) {
             order.setStatus("0");
@@ -29,13 +35,28 @@ public class OrderController {
             order.setOrderId(i);
             orderService.updateTransactional(order);
         }
-        return "test";
+        return null;
     }
 
-    //测试
-    @RequestMapping(value="get1")
-    public Object getTransactional() {
-        Order order = new Order();
+    @RequestMapping(value="queryOrder")
+    public Object queryOrder() {
         return orderService.getTransactional();
+    }
+
+    @RequestMapping(value="saveOrg")
+    public String saveOrg() throws SQLException, ClassNotFoundException {
+        Org org = new Org();
+        for (int i = 0;  i< 100; i++) {
+            org.setId(i);
+            org.setName(i+"");
+            org.setCode(i+"");
+            orgService.updateTransactional(org);
+        }
+        return null;
+    }
+
+    @RequestMapping(value="queryOrg")
+    public Object queryOrg() {
+        return orgService.getTransactional();
     }
 }
