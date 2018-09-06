@@ -59,7 +59,7 @@ public class OrgService {
         try {
             Connection conn = null;
             Class.forName(driverName);
-            conn = DriverManager.getConnection(test1Url, userName, password);
+            conn = DriverManager.getConnection(dbUrl, userName, password);
             String sql = "INSERT INTO t_org(id,name,code)VALUES(?,?,?)";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, org.getId());
