@@ -21,6 +21,7 @@ import java.util.Properties;
 
 /**
  * Created by yangmingquan on 2018/9/29.
+ * XA两阶段提交分布式事务
  */
 @Service
 public class MysqlXaTransactionService {
