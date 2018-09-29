@@ -47,11 +47,11 @@ public class SwaggerConfig {
 
     private ApiInfo demoApiInfo() {
         return new ApiInfoBuilder()
-                .title("坪山党建接口 微信端")//大标题
-                .description("坪山党建项目 微信端")//详细描述
+                .title("Bonaparte")//大标题
+                .description("Bonaparte")//详细描述
                 .version("1.0")//版本
                 .termsOfServiceUrl("NO terms of service")
-                .contact(new Contact("karakal", "http://karakal.com.cn/", ""))//作者
+                .contact(new Contact("Bonaparte", "Bonaparte", ""))//作者
                 .license("The Apache License, Version 2.0")
                 .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
                 .build();

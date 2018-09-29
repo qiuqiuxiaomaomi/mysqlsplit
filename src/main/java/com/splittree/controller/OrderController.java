@@ -2,6 +2,7 @@ package com.splittree.controller;
 
 import com.splittree.entity.Order;
 import com.splittree.entity.Org;
+import com.splittree.service.MysqlXaTransactionService;
 import com.splittree.service.OrderService;
 import com.splittree.service.OrgService;
 import io.swagger.annotations.*;
@@ -24,6 +25,8 @@ public class OrderController {
     private OrderService orderService;
     @Autowired
     private OrgService orgService;
+    @Autowired
+    private MysqlXaTransactionService mysqlXaTransactionService;
 
     //测试
     @RequestMapping(value="saveOrder")
@@ -58,5 +61,15 @@ public class OrderController {
     @RequestMapping(value="queryOrg")
     public Object queryOrg() {
         return orgService.getTransactional();
+    }
+
+    @ApiOperation(value = "Hash操作接口",notes = "Hash操作接口",httpMethod = "GET")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200,message = "")
+    })
+    @RequestMapping(value = "xa")
+    public Object xa(){
+        mysqlXaTransactionService.mysqlXaTransactionServiceExcute();
+        return "ok";
     }
 }

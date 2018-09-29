@@ -50,6 +50,12 @@ public class DataSourceConfig {
         return DataSourceBuilder.create().build();
     }
 
+    @Bean(name="dataSource2")
+    @ConfigurationProperties(prefix = "spring.datasource.test3")
+    public DataSource dataSource2(){
+        return DataSourceBuilder.create().build();
+    }
+
     /**
      * 配置数据源规则，即将多个数据源交给sharding-jdbc管理，并且可以设置默认的数据源，
      * 当表没有配置分库规则时会使用默认的数据源
@@ -59,10 +65,12 @@ public class DataSourceConfig {
      */
     @Bean
     public DataSourceRule dataSourceRule(@Qualifier("dataSource0") DataSource dataSource0,
-                                         @Qualifier("dataSource1") DataSource dataSource1){
+                                         @Qualifier("dataSource1") DataSource dataSource1,
+                                         @Qualifier("dataSource2") DataSource dataSource2){
         Map<String, DataSource> dataSourceMap = new HashMap<>(); //设置分库映射
         dataSourceMap.put("dataSource0", dataSource0);
         dataSourceMap.put("dataSource1", dataSource1);
+        dataSourceMap.put("dataSource2", dataSource2);
         return new DataSourceRule(dataSourceMap, "dataSource0"); //设置默认库，两个库以上时必须设置默认库。默认库的数据源名称必须是dataSourceMap的key之一
     }
 
