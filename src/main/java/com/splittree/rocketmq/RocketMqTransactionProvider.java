@@ -1,4 +1,4 @@
-package com.splittree.service;
+package com.splittree.rocketmq;
 
 import org.springframework.stereotype.Service;
 
@@ -7,5 +7,5 @@ import org.springframework.stereotype.Service;
  * 消息事务
  */
 @Service
-public class RocketMqTransactionService {
+public class RocketMqTransactionProvider {
 }
