@@ -12,13 +12,17 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class MySqlTccTransactionService {
 
+    @Transactional
     @Tcc(confirmMethod = "confirm", cancelMethod = "cancel")
     public boolean pay(){
+        boolean result = false;
         try{
-            return true;
+            // 减库存
+            result = decreaseStorage();
         }catch (Exception e){
-            return false;
+            e.printStackTrace();
         }
+        return result;
     }
 
     @Transactional
@@ -28,6 +32,13 @@ public class MySqlTccTransactionService {
 
     @Transactional
     public boolean cancel(){
+        return true;
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public boolean decreaseStorage(){
+        //库存不足 throw Exception
+        //库存充足
         return true;
     }
 }

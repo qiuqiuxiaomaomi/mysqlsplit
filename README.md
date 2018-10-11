@@ -1,5 +1,8 @@
 # mysqlsplit
 ## mysql 分库分表
+
+![](https://i.imgur.com/amWjT1O.jpg)
+
 <pre>
    基本分库分表:
        1:分库分表
