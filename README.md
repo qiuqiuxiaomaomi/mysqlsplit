@@ -83,4 +83,13 @@
        2）重构查询
           1）切分查询
           2）分解关联查询
+   15) Mysql的存储引擎
+       1) Innodb
+       2) MyIsam
+       3) Archive
+       5) memory
+       6) NDB集群引擎 
+   16) Mysql的锁粒度
+   17) Mysql的事务隔离级别
+   18) 多版本并发控制MVCC
 </pre>
