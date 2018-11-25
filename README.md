@@ -439,3 +439,35 @@ Mysql查询执行路径
    17) Mysql的事务隔离级别
    18) 多版本并发控制MVCC
 </pre>
+
+<pre>
+InnoDB与MyIsam引擎的区别与应用场景
+      1）事务处理
+         InnoDB支持事务，MyIsam不支持事务
+      2）锁机制不同
+         MyIsam是表级锁，InnoDB是行级锁
+      3）select, update, insert, delete操作
+         MyIsam如果执行大量的select，MyIsam是更好的选择
+         InnoDB如果执行大量的Insert或Update，处于性能的考虑，应该使用InnoDB
+      5) 查询表的行数不同
+         MyIsam:select count(*) from table 只需要简单的独处保存好的行数，
+         InnoDB: InnoDB不保存表的具体行数
+      6）外键支持
+         MyIsam不支持外键
+         InnoDB支持外键
+
+     为什么MyIsam会比InnoDB的查询速度快
+         InnoDB在做select的时候，要维护的东西比MyIsam引擎多很多；
+         1）数据块，InnoDB要缓存，MyIsam只缓存索引块，这中间还有换进换出的减少。
+         2）InnoDB寻址要映射到块，再到行，MyIsam记录的直接是文件的OffSet，定位比InnoDB要快。
+         3）InnoDB还需要维护MVCC一致，虽然不适用，但它还是需要检查和维护
+
+     应用场景
+         MyIsam适合：
+           1) 做很多count的计算
+           2）插入不频繁，查询非常频繁
+           3）没有事务
+         InnoDB:
+           1) 可靠性要求比较高，或者要求事务
+           2）表更新和查询都相当的频繁，并且行锁定的机会比较大的情况。 
+</pre>
