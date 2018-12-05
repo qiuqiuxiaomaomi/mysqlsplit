@@ -499,3 +499,8 @@ InnoDB与MyIsam引擎的区别与应用场景
 
        blackhole引擎它不占硬盘空间，作为一个中转，只负责记日志、传日志。
 </pre>
+
+<pre>
+CSV 引擎
+      CSV存储引擎可以将csv文件作为mysql的表进行处理，存储格式就是普通的csv文件。
+</pre>
