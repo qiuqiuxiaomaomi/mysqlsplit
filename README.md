@@ -611,3 +611,14 @@ InnoDB存储引擎由多个内存块组成一个大的内存池。主要负责�
 MyIsam为什么查询比InnoDB块
       
 </pre>
+
+<pre>
+查看慢查询
+      1）Springboot查看AOP拦截SQL接口
+      2）Mysql配置慢查询日志打开
+      3）Explain查询计划
+</pre>
+
+各种数据库中间件
+
+![](https://i.imgur.com/zsj1kr3.png)
