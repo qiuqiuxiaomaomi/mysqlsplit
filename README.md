@@ -578,3 +578,31 @@ Oracle与Mysql的差异
       11）安装所用的空间差别也是很大的，Mysql安装完后才152M而Oracle有3G左右，且使用的时
       候Oracle占用特别大的内存空间和其他机器性能
 </pre>
+
+![](https://i.imgur.com/ZJ9S0Av.png)
+
+<pre>
+InnoDB存储引擎由多个内存块组成一个大的内存池。主要负责：
+      1）维护所有进程/线程需要访问的多个内部数据结构
+      2）缓存磁盘数据及修改过的数据，便于快速读取/写入（buffer/cache）
+      3) 还有一部分重做日志（redo log buffer）
+
+
+   InnoDB是多线程的模型，其后台包含多个线程，分别负责处理不同的任务。
+      1：Master线程
+        缓冲池数据异步刷新到磁盘
+        保证数据的一致性（刷新脏页、合并插入缓冲、UNDO页回收）
+
+      2.Io Thread
+        为提高数据库写入性能，InnoDB大量采用AIO，此线程主要负责这些IO请求的回调处理，
+
+        IO Thread 线程类型	       默认线程数
+        insert buffer thread	   1
+        log thread	               1
+        innodb_read_io_threads	   4
+        innodb_write_io_threads	   4
+
+      3、Purge Thread
+        事务被提交后，其所使用的undo log可能不再需要，因此需要Purge Thread来回收已经
+      使用并分配的undo页
+</pre>
