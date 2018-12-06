@@ -606,3 +606,8 @@ InnoDB存储引擎由多个内存块组成一个大的内存池。主要负责�
         事务被提交后，其所使用的undo log可能不再需要，因此需要Purge Thread来回收已经
       使用并分配的undo页
 </pre>
+
+<pre>
+MyIsam为什么查询比InnoDB块
+      
+</pre>
